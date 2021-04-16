@@ -16,17 +16,21 @@ if($null -eq (Get-InstalledModule -Name AzSentinel)){
 write-host "Installing Azure AzSentinel module"
 Install-Module -Name AzSentinel -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
 }
-Function Get-FileName {  
-    param($initialDirectory)
-    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
+Function Get-FolderName { 
+    param($initialDirectory) 
+    [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms")|Out-Null
 
-    $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
-    $OpenFileDialog.initialDirectory = $initialDirectory
-    $OpenFileDialog.filter = "All files (*.json)| *.*"
-    $OpenFileDialog.ShowDialog() | Out-Null
-    
- return $OpenFileDialog.filename
-} #end function Get-FileName
+    $folderDiag = New-Object System.Windows.Forms.FolderBrowserDialog
+    $folderDiag.Description = "Select a folder to Export to"
+    $folderDiag.rootfolder = "MyComputer"
+    $folderDiag.SelectedPath = $initialDirectory
+
+    if($folderDiag.ShowDialog() -eq "OK")
+    {
+        $SelectedFolder += $folderDiag.SelectedPath
+    }
+    return $SelectedFolder 
+} #end function Get-FolderName
 
 #disconnect exiting connections and clearing contexts.
 Write-Output "Clearing existing Azure connection `n"
@@ -65,21 +69,21 @@ Try{
 
     Write-Host "`nWorking in Subscription: $($GetSubscription.Name)"
 
-    $LAWs = get-AzOperationalInsightsWorkspace 
+    $LAWs = get-AzOperationalInsightsWorkspace | Out-GridView -Title "Select Subscription to build" -PassThru 
     if($null -eq $LAWs){
         Write-Host "No Log Analytics workspace found..." -ForegroundColor red 
     }
     else{
         Write-Host "`nListing Log Analytics workspace" -ForegroundColor Green
-           
-        Write-host "Importing Azure Sentinel Rules" -ForegroundColor Green
+            
+        Write-host "Exporting Azure Sentinel Rules" -ForegroundColor Green
+        
         foreach($LAW in $LAWs){
-            $CurrentLoation = Get-Location
-
-            $File = Get-FileName -initialDirectory $CurrentLoation.Drive.Root
-    
-            Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile $File
+            $FolderName = Get-FolderName -initialDirectory $CurrentLoation.Drive.Root
+            $null = MkDir "$($FolderName)" -Force #".\$($LAW.name)" -Force
+            Export-AzSentinel -WorkspaceName $LAW.name -OutputFolder "$($FolderName)\$($LAW.name)\" -Kind All
         }
+        
 
     }
 

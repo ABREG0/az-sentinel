@@ -89,7 +89,7 @@ if ($PSVersionTable.PSVersion -lt $PSrequiredVersion)
  }
 
 
-& .\Import-azSentinelRules.ps1
+#& .\Import-azSentinelRules.ps1
 
 Write-Host "`nSleeping for 20 seconds before exiting new admin PS window..."
 Start-Sleep -Seconds 20
