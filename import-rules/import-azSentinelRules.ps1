@@ -1,3 +1,5 @@
+$TenantID = ''
+$RulesFile = ''
 
 write-host "PS version $($psversionTable.psversion)" -ForegroundColor red
     
@@ -25,7 +27,7 @@ get-azcontext -ListAvailable | ForEach-Object{$_ | remove-azcontext -Force -Verb
 Write-Output "`nClearing of existing connection and context completed. `n"
 Try{
     #Connect to tenant with context name and save it to variable
-    $ConnectToTentant = Connect-AzAccount -Tenant '' -ContextName 'MyContext' -Force -ErrorAction Stop
+    $ConnectToTentant = Connect-AzAccount -Tenant $TenantID -ContextName 'MyContext' -Force -ErrorAction Stop
         
     #Select subscription to build
     $GetSubscriptions = Get-AzSubscription | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to build" -PassThru 
