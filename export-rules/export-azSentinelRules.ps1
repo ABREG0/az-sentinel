@@ -1,7 +1,7 @@
 #cabrego - 20210412
 
-$TenantID = ''
-$RulesFile = ''
+$TenantID = 'ed312097-26b2-4cac-a13b-a8be209876d6'
+#$RulesFile = ''
 
 write-host "PS version $($psversionTable.psversion)" -ForegroundColor red
     
@@ -77,10 +77,10 @@ Try{
         Write-Host "`nListing Log Analytics workspace" -ForegroundColor Green
             
         Write-host "Exporting Azure Sentinel Rules" -ForegroundColor Green
-        
+        $FolderName = Get-FolderName -initialDirectory $CurrentLoation.Drive.Root
         foreach($LAW in $LAWs){
-            $FolderName = Get-FolderName -initialDirectory $CurrentLoation.Drive.Root
-            $null = MkDir "$($FolderName)" -Force #".\$($LAW.name)" -Force
+            
+            #$null = MkDir "$($FolderName)" -Force #".\$($LAW.name)" -Force
             Export-AzSentinel -WorkspaceName $LAW.name -OutputFolder "$($FolderName)\$($LAW.name)\" -Kind All
         }
         

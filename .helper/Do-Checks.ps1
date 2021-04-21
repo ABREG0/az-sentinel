@@ -8,7 +8,6 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
   $arguments = $SCRIPT:MyInvocation.MyCommand.Path #"& '" +$myinvocation.mycommand.definition + "'"
 
   write-host "`ncheck if PS was launched as admin... re-launching the script: `n $($arguments) " -ForegroundColor Red
-
   Start-Process powershell -Verb runAs -ArgumentList $arguments
   
   Break
@@ -17,7 +16,7 @@ if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
     Write-Host "`nPowerShell was Launched as Admin... " -ForegroundColor Green
  }
 
- Function Install-PowerShell7 {
+ Function Install-PowerShellCore {
 $TLS12Protocol = [System.Net.SecurityProtocolType] 'Ssl3 , Tls12'
 [System.Net.ServicePointManager]::SecurityProtocol = $TLS12Protocol
 
@@ -37,12 +36,12 @@ $TLS12Protocol = [System.Net.SecurityProtocolType] 'Ssl3 , Tls12'
 
 }
 
- Function Test-PSVersion{
+ Function Test-InstalledPSCore{
    param(
       $PsVersion
    )
    $PSrequiredVersion = $PsVersion
-   $PSInstalled = Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object {$_.DisplayName -match "PowerShell [0-9]-x" } 
+   $PSInstalled = Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object {$_.DisplayName -match "PowerShell [6-9]-x" } 
    
    if($null -ne $PSInstalled){
 
@@ -51,25 +50,24 @@ $TLS12Protocol = [System.Net.SecurityProtocolType] 'Ssl3 , Tls12'
        If($PSInstalled.DisplayVersion -ge $PSrequiredVersion){
    
            Write-Host "`n PS core version is greater than $($PSrequiredVersion) required for AzSentinel Module"
-   
            $PSInstalled.DisplayVersion
        }
        return $true 
    } 
     else{
-       Write-Host "Downloading and Installing PowerShell Core latest version"
+       Write-Host "`n PS core is NOT installed... `n Need to Install PowerShell Core latest version" -ForegroundColor Red
          Return $false 
-         #Install-PowerShell7
+         
     }
    
 }
 
-if(Test-PSVersion -PsVersion 6.2){
+if(Test-InstalledPSCore -PsVersion 6.2){
    Write-Host "PS Core is installed" -ForegroundColor Green
 }
  else{
-    Write-Host "Installing PS Core v7" -ForegroundColor Red
-    Install-PowerShell7
+    Write-Host "Installing PS Core Latest version" -ForegroundColor Red
+    Install-PowerShellCore
  }
 
 Write-Host "`nStarting PS version" -ForegroundColor Red
@@ -78,14 +76,13 @@ $PSVersionTable.PSVersion
 if ($PSVersionTable.PSVersion -lt $PSrequiredVersion)
 {
     Write-Host "`nScript was launch from PS ver below $($PSrequiredVersion)... re-launching the script with ps7. `n $($SCRIPT:MyInvocation.MyCommand.Path)" -ForegroundColor Cyan 
-    
-	pwsh -f $SCRIPT:MyInvocation.MyCommand.Path
+    pwsh -f $SCRIPT:MyInvocation.MyCommand.Path
 
 	return
 }
  else{
 
-    Write-Host "`nScript was launch from PS vps7" -ForegroundColor Cyan 
+    Write-Host "`nScript was launch from PS Core" -ForegroundColor Cyan 
  }
 
 
