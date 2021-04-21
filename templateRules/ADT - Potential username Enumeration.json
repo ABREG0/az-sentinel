@@ -15,7 +15,7 @@
         },
         "displayName": "ADT - Potential username Enumeration 1",
         "enabled": true,
-        "description": "",
+        "description": "ADT - Potential username Enumeration 1",
         "tactics": [
           "InitialAccess",
           "CredentialAccess"

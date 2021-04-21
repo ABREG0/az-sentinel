@@ -1,6 +1,6 @@
 #cabrego - 20210412
 
-$TenantID = 'ed312097-26b2-4cac-a13b-a8be209876d6'
+$TenantID = ''
 #$RulesFile = ''
 
 write-host "PS version $($psversionTable.psversion)" -ForegroundColor red
@@ -47,7 +47,7 @@ Try{
     $ConnectToTentant = Connect-AzAccount -Tenant $TenantID -ContextName 'MyContext' -Force -ErrorAction Stop
         
     #Select subscription to build
-    $GetSubscriptions = Get-AzSubscription | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to build" -PassThru 
+    $GetSubscriptions = Get-AzSubscription | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to Use" -PassThru 
         
     }
     catch{
@@ -69,7 +69,7 @@ Try{
 
     Write-Host "`nWorking in Subscription: $($GetSubscription.Name)"
 
-    $LAWs = get-AzOperationalInsightsWorkspace | Out-GridView -Title "Select Subscription to build" -PassThru 
+    $LAWs = get-AzOperationalInsightsWorkspace | Out-GridView -Title "Select Log Analytics workspace" -PassThru 
     if($null -eq $LAWs){
         Write-Host "No Log Analytics workspace found..." -ForegroundColor red 
     }

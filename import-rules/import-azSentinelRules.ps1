@@ -21,11 +21,13 @@ Function Get-FileName {
     [System.Reflection.Assembly]::LoadWithPartialName("System.windows.forms") | Out-Null
 
     $OpenFileDialog = New-Object System.Windows.Forms.OpenFileDialog
+    $OpenFileDialog.Multiselect = "true"
+    $OpenFileDialog.Title = "Select Rules Files"
     $OpenFileDialog.initialDirectory = $initialDirectory
     $OpenFileDialog.filter = "All files (*.json)| *.*"
     $OpenFileDialog.ShowDialog() | Out-Null
     
- return $OpenFileDialog.filename
+ return $OpenFileDialog.FileNames
 } #end function Get-FileName
 
 #disconnect exiting connections and clearing contexts.
@@ -43,7 +45,7 @@ Try{
     $ConnectToTentant = Connect-AzAccount -Tenant $TenantID -ContextName 'MyContext' -Force -ErrorAction Stop
         
     #Select subscription to build
-    $GetSubscriptions = Get-AzSubscription | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to build" -PassThru 
+    $GetSubscriptions = Get-AzSubscription | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to use" -PassThru 
         
     }
     catch{
@@ -65,20 +67,42 @@ Try{
 
     Write-Host "`nWorking in Subscription: $($GetSubscription.Name)"
 
-    $LAWs = get-AzOperationalInsightsWorkspace 
+    $LAWs = get-AzOperationalInsightsWorkspace | Out-GridView -Title "Select Log Analytics workspace" -PassThru 
+
     if($null -eq $LAWs){
         Write-Host "No Log Analytics workspace found..." -ForegroundColor red 
     }
     else{
         Write-Host "`nListing Log Analytics workspace" -ForegroundColor Green
            
-        Write-host "Importing Azure Sentinel Rules" -ForegroundColor Green
+        Write-host "`n Importing Azure Sentinel Rules" -ForegroundColor Green
         foreach($LAW in $LAWs){
             $CurrentLoation = Get-Location
 
-            $File = Get-FileName -initialDirectory $CurrentLoation.Drive.Root
-    
-            Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile $File
+            $Files = Get-FileName -initialDirectory $CurrentLoation.Drive.Root
+
+            $Count = $Files.count 
+            
+            if($null -ne $Files){
+
+                for ($index = 0 ; $index -lt $files.count; ){
+
+                    $current = ($index + 1)
+
+                    Write-Host "`n Adding File $($Files[$index]) [ $current of $Count ] " -ForegroundColor Green
+                    $null = Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile "$($Files[$index])" | Out-Null
+                    
+                    $index++
+
+                }
+                
+            }
+             else{
+                 Write-Host "No File was selected..." -ForegroundColor Red
+                 break 
+             }
+            
+
         }
 
     }

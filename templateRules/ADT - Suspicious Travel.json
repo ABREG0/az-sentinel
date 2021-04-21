@@ -13,9 +13,9 @@
       "eventGroupingSettings": {
         "aggregationKind": "SingleAlert"
       },
-      "displayName": "ADT - Suspicious Travel",
+      "displayName": "ADT - Suspicious Travel 1",
       "enabled": true,
-      "description": "ADT - Suspicious Travel",
+      "description": "ADT - Suspicious Travel 1",
       "tactics": [
         "InitialAccess"
       ],
