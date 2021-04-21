@@ -1,6 +1,6 @@
 #cabrego - 20210412
 
-$TenantID = 'ed312097-26b2-4cac-a13b-a8be209876d6'
+$TenantID = ''
 #$RulesFile = ''
 
 write-host "PS version $($psversionTable.psversion)" -ForegroundColor red
