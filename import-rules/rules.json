@@ -1,0 +1,210 @@
+//cabrego - 20210412
+{
+  "Scheduled": [
+    {
+      "severity": "Medium",
+      "query": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\"",
+      "queryFrequency": "PT5H",
+      "queryPeriod": "PT6H",
+      "triggerOperator": "GreaterThan",
+      "triggerThreshold": 5,
+      "suppressionDuration": "PT1H",
+      "suppressionEnabled": false,
+      "eventGroupingSettings": {
+        "aggregationKind": "SingleAlert"
+      },
+      "displayName": "AlertRule01",
+      "enabled": true,
+      "description": "",
+      "tactics": [
+        "Persistence",
+        "LateralMovement",
+        "Collection"
+      ],
+      "alertRuleTemplateName": "826bb2f8-7894-4785-9a6b-a8a855d8366f",
+      "lastModifiedUtc": "2021-04-13T01:24:26.5384236Z",
+      "name": "7c99c576-6d49-4718-bf3c-682386e76813",
+      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/7c99c576-6d49-4718-bf3c-682386e76813",
+      "kind": "Scheduled",
+      "createIncident": true,
+      "groupingConfiguration": {
+        "enabled": false,
+        "reopenClosedIncident": false,
+        "lookbackDuration": "PT5H",
+        "entitiesMatchingMethod": "All",
+        "groupByEntities": [
+          "Account",
+          "IP",
+          "Host",
+          "URL",
+          "FileHash"
+        ]
+      },
+      "playbookName": ""
+    },
+    {
+      "severity": "Medium",
+      "query": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\"",
+      "queryFrequency": "PT5H",
+      "queryPeriod": "PT6H",
+      "triggerOperator": "GreaterThan",
+      "triggerThreshold": 5,
+      "suppressionDuration": "PT1H",
+      "suppressionEnabled": false,
+      "eventGroupingSettings": {
+        "aggregationKind": "SingleAlert"
+      },
+      "displayName": "AlertRule02",
+      "enabled": true,
+      "description": "",
+      "tactics": [
+        "Persistence",
+        "LateralMovement",
+        "Collection"
+      ],
+      "alertRuleTemplateName": null,
+      "lastModifiedUtc": "2021-04-13T01:24:35.0824843Z",
+      "name": "62c5f5b5-f1f7-45ae-bcfc-19e1fe140e1f",
+      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/62c5f5b5-f1f7-45ae-bcfc-19e1fe140e1f",
+      "kind": "Scheduled",
+      "createIncident": true,
+      "groupingConfiguration": {
+        "enabled": false,
+        "reopenClosedIncident": false,
+        "lookbackDuration": "PT5H",
+        "entitiesMatchingMethod": "All",
+        "groupByEntities": [
+          "Account",
+          "IP",
+          "Host",
+          "URL",
+          "FileHash"
+        ]
+      },
+      "playbookName": ""
+    },
+    {
+      "severity": "Medium",
+      "query": "SecurityEvent | where EventID == \"4688\" | where CommandLine contains \"-noni -ep bypass $\"",
+      "queryFrequency": "PT5H",
+      "queryPeriod": "PT6H",
+      "triggerOperator": "GreaterThan",
+      "triggerThreshold": 5,
+      "suppressionDuration": "PT1H",
+      "suppressionEnabled": false,
+      "eventGroupingSettings": {
+        "aggregationKind": "SingleAlert"
+      },
+      "displayName": "AlertRule03",
+      "enabled": true,
+      "description": "",
+      "tactics": [
+        "Persistence",
+        "LateralMovement",
+        "Collection"
+      ],
+      "alertRuleTemplateName": null,
+      "lastModifiedUtc": "2021-04-13T01:24:38.1490799Z",
+      "name": "ef4c67b7-af9b-462d-aff1-8b81ab129f6d",
+      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/ef4c67b7-af9b-462d-aff1-8b81ab129f6d",
+      "kind": "Scheduled",
+      "createIncident": true,
+      "groupingConfiguration": {
+        "enabled": false,
+        "reopenClosedIncident": false,
+        "lookbackDuration": "PT5H",
+        "entitiesMatchingMethod": "All",
+        "groupByEntities": [
+          "Account",
+          "IP",
+          "Host",
+          "URL",
+          "FileHash"
+        ]
+      },
+      "playbookName": ""
+    }
+  ],
+  "MicrosoftSecurityIncidentCreation": [
+    {
+      "productFilter": "Azure Security Center",
+      "severitiesFilter": null,
+      "displayNamesFilter": null,
+      "displayNamesExcludeFilter": null,
+      "displayName": "rule1",
+      "enabled": true,
+      "description": "",
+      "tactics": null,
+      "alertRuleTemplateName": null,
+      "lastModifiedUtc": "2021-04-13T01:03:08.4200465Z",
+      "name": "18e73498-b535-4300-a5be-c09d9ec756b5",
+      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/18e73498-b535-4300-a5be-c09d9ec756b5",
+      "kind": "MicrosoftSecurityIncidentCreation",
+      "playbookName": ""
+    },
+    {
+      "productFilter": "Microsoft Cloud App Security",
+      "severitiesFilter": [
+        "High",
+        "Medium",
+        "Low"
+      ],
+      "displayNamesFilter": null,
+      "displayNamesExcludeFilter": null,
+      "displayName": "Create incidents based on Azure Active Directory Identity Protection alerts",
+      "enabled": true,
+      "description": "Create incidents based on all alerts generated in Azure Active Directory Identity Protection",
+      "tactics": null,
+      "alertRuleTemplateName": null,
+      "lastModifiedUtc": "2021-04-13T01:24:42.5567915Z",
+      "name": "618447ad-a1eb-4a0f-b34e-04332ca5f2da",
+      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/618447ad-a1eb-4a0f-b34e-04332ca5f2da",
+      "kind": "MicrosoftSecurityIncidentCreation",
+      "playbookName": ""
+    }
+  ],
+  "MLBehaviorAnalytics": [
+    {
+      "alertRuleTemplateName": "fa118b98-de46-4e94-87f9-8e6d5060b60b",
+      "displayName": "(Preview) Anomalous SSH Login Detection",
+      "description": "This detection uses machine learning (ML) to identify anomalous Secure Shell (SSH) login activity, based on syslog data. Scenarios include:\n\n*\tUnusual IP - This IP address has not or has rarely been seen in last 30 days.\n*\tUnusual Geo - The IP address, city, country and ASN have not (or rarely) been seen in last 30 days.\n*\tNew user - A new user logs in from an IP address and geo location, both or either of which are not expected to be seen in the last 30 days.\n\nAllow 7 days after this alert is enabled for Azure Sentinel to build a profile of normal activity for your environment.\n\nThis detection requires a specific configuration of the data source. [Learn more](https://docs.microsoft.com/en-us/azure/sentinel/connect-syslog#configure-the-syslog-connector-for-anomalous-ssh-login-detection)\n\nBy enabling this rule, you give Microsoft permission to copy ingested data outside of your Azure Sentinel workspace’s geography as necessary for processing by the machine learning engine.",
+      "tactics": [
+        "InitialAccess"
+      ],
+      "severity": "Medium",
+      "enabled": true,
+      "lastModifiedUtc": "2021-04-13T01:24:40.7177769Z",
+      "name": "c6b9ec59-10ae-46ab-9b80-e90f6c0f0133",
+      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/c6b9ec59-10ae-46ab-9b80-e90f6c0f0133",
+      "kind": "MLBehaviorAnalytics",
+      "playbookName": ""
+    }
+  ],
+  "Fusion": [
+    {
+      "displayName": "Advanced Multistage Attack Detection",
+      "description": "Using Fusion technology based on machine learning, Azure Sentinel automatically detects multistage attacks by identifying combinations of anomalous behaviors and suspicious activities observed at various stages of the kill chain. On the basis of these discoveries, Azure Sentinel generates incidents that would otherwise be very difficult to catch. By design, these incidents are low-volume, high-fidelity, and high-severity, which is why this detection is turned ON by default.\n\nThere are a total of 90 Fusion incident types detected by Azure Sentinel.\n\nTo detect these multistage attacks, the following data connectors must be configured:\n- Azure Active Directory Identity Protection.\n- Microsoft Cloud App Security.\n- Microsoft Defender for Endpoint.\n- Azure Defender.\n- Palo Alto Networks.\n\nFor a full list and description of each scenario that is supported for these multistage attacks, go to https://aka.ms/SentinelFusion.",
+      "alertRuleTemplateName": "f71aba3d-28fb-450b-b192-4e76a83015c8",
+      "tactics": [
+        "Collection",
+        "CommandAndControl",
+        "DefenseEvasion",
+        "Discovery",
+        "Execution",
+        "Exfiltration",
+        "Impact",
+        "InitialAccess",
+        "LateralMovement",
+        "Persistence",
+        "PrivilegeEscalation"
+      ],
+      "severity": "High",
+      "enabled": true,
+      "lastModifiedUtc": "2021-04-13T01:24:39.8142028Z",
+      "name": "BuiltInFusion",
+      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/BuiltInFusion",
+      "kind": "Fusion",
+      "playbookName": ""
+    }
+  ]
+}
