@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # Export Import Sentinel Rules - az-sentinel
 
 ## Goal  Streamline way to import analytic rules to a sentinel instance
