@@ -59,7 +59,3 @@
                 Select the Log Analytics Workspace that contains rules to export
                 Select folder name containing your rules (you can select one or multiples)
 
-=======
-# az-sentinel
-sentinel work
->>>>>>> e210f3af664422d53f5a4a638f5baddd89c37cba
