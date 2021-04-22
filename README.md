@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Export Import Sentinel Rules - az-sentinel
 
 ## Goal  Streamline way to import analytic rules to a sentinel instance
@@ -14,7 +15,7 @@
         Sentinel PowerShell Module (AzSentinel)
         Set PowerShell Execution Policy
 
-## **Downlaod and run checks**
+## **Download and run checks**
 
     Download files from github ABREG0/az-sentinel: sentinel work (github.com) - in a web browser zipped format or by cloning the repo with git. 
     Verify system has all required components
@@ -58,3 +59,7 @@
                 Select the Log Analytics Workspace that contains rules to export
                 Select folder name containing your rules (you can select one or multiples)
 
+=======
+# az-sentinel
+sentinel work
+>>>>>>> e210f3af664422d53f5a4a638f5baddd89c37cba
