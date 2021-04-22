@@ -1,7 +1,8 @@
 
 # Export Import Sentinel Rules - az-sentinel
 
-## Goal  Streamline way to import analytic rules to a sentinel instance
+## Goal  
+Streamline way to import analytic rules to a sentinel instance
 
     Helper Script: 
         Do-checks.ps1
@@ -59,3 +60,5 @@
                 Select the Log Analytics Workspace that contains rules to export
                 Select folder name containing your rules (you can select one or multiples)
 
+
+cabrego 202104
