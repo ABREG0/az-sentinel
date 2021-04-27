@@ -3,7 +3,7 @@
 
 
 ## Goal  
-Streamline way to import analytic rules to a sentinel instance
+Automate the export and import of analytic rules to one or multiple sentinel instance in selected subscriptions.
 
     Helper Script: 
         Do-checks.ps1
