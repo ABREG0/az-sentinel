@@ -1,0 +1,34 @@
+{
+  "MicrosoftSecurityIncidentCreation": [],
+  "Scheduled": [
+    {
+      "severity": "Medium",
+      "query": "SecurityAlert\r\n| where AlertName == \"Atypical travel\"\r\n| extend User_Account_ = tostring(parse_json(ExtendedProperties).[\"User Account\"]),Previous_IP_Address_ = tostring(parse_json(ExtendedProperties).[\"Previous IP Address\"]),Previous_Location_ = tostring(parse_json(ExtendedProperties).[\"Previous Location\"]),Previous_Signin_DateTime_ = tostring(parse_json(ExtendedProperties).[\"Previous Signin DateTime\"]),Current_IP_Address_ = tostring(parse_json(ExtendedProperties).[\"Current IP Address\"]),Current_Location_ = tostring(parse_json(ExtendedProperties).[\"Current Location\"]),User_Agent_ = tostring(parse_json(ExtendedProperties).[\"User Agent\"]),Request_Id_ = tostring(parse_json(ExtendedProperties).[\"Request Id\"]),Device_Information_ = tostring(parse_json(ExtendedProperties).[\"Device Information\"])",
+      "queryFrequency": "PT1H",
+      "queryPeriod": "PT1H",
+      "triggerOperator": "GreaterThan",
+      "triggerThreshold": 0,
+      "suppressionDuration": "PT5H",
+      "suppressionEnabled": true,
+      "eventGroupingSettings": {
+        "aggregationKind": "SingleAlert"
+      },
+      "displayName": "Suspicious Travel 1",
+      "enabled": true,
+      "description": "Suspicious Travel 1",
+      "tactics": [
+        "InitialAccess"
+      ],
+      "kind": "Scheduled",
+      "createIncident": true,
+      "groupingConfiguration": {
+        "enabled": false,
+        "reopenClosedIncident": false,
+        "lookbackDuration": "PT5H",
+        "entitiesMatchingMethod": "All",
+        "groupByEntities": []
+      },
+      "playbookName": ""
+    }
+  ]
+}

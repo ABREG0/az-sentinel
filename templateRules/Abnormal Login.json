@@ -1,0 +1,40 @@
+{
+  "MicrosoftSecurityIncidentCreation": [],
+  "Scheduled": [
+    {
+      "severity": "Medium",
+      "query": "SecurityAlert\r\n| where AlertName == \"Unfamiliar sign-in properties\"\r\n| extend Client_Location_ = tostring(parse_json(ExtendedProperties).[\"Client Location\"]),Client_IP_Address_ = tostring(parse_json(ExtendedProperties).[\"Client IP Address\"]),User_Account_ = tostring(parse_json(ExtendedProperties).[\"User Account\"]),Request_Id_ = tostring(parse_json(ExtendedProperties).[\"Request Id\"])\r\n| where Client_Location_ !contains \"US\"\r\n",
+      "queryFrequency": "PT1H",
+      "queryPeriod": "PT1H",
+      "triggerOperator": "GreaterThan",
+      "triggerThreshold": 0,
+      "suppressionDuration": "PT1H",
+      "suppressionEnabled": false,
+      "eventGroupingSettings": {
+        "aggregationKind": "SingleAlert"
+      },
+      "displayName": "Abnormal Login 1",
+      "enabled": true,
+      "description": "Abnormal Login 1",
+      "tactics": [
+        "InitialAccess"
+      ],
+      "kind": "Scheduled",
+      "createIncident": true,
+      "groupingConfiguration": {
+        "enabled": false,
+        "reopenClosedIncident": false,
+        "lookbackDuration": "PT5H",
+        "entitiesMatchingMethod": "All",
+        "groupByEntities": [
+          "Account",
+          "IP",
+          "Host",
+          "URL",
+          "FileHash"
+        ]
+      },
+      "playbookName": ""
+    }
+  ]
+}
