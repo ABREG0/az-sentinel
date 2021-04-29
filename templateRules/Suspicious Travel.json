@@ -28,6 +28,7 @@
         "entitiesMatchingMethod": "All",
         "groupByEntities": []
       },
+      // make sure permission has been granted for the resource group where your logic app (playbook) resides within Sentinel Automation. It requires the resource ID. 
       "playbookName": ""
     }
   ]
