@@ -35,7 +35,7 @@ Function Get-FolderName {
 #disconnect exiting connections and clearing contexts.
 Write-Output "Clearing existing Azure connection `n"
     
-Disconnect-AzAccount -ContextName 'MyContext' | Out-Null
+$null = Disconnect-AzAccount -ContextName 'MyContext' -ErrorAction SilentlyContinue
     
 Write-Output "Clearing existing Azure context `n"
     
@@ -47,12 +47,12 @@ Try{
     $ConnectToTentant = Connect-AzAccount -Tenant $TenantID -ContextName 'MyContext' -Force -ErrorAction Stop
         
     #Select subscription to build
-    $GetSubscriptions = Get-AzSubscription | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to Use" -PassThru 
+    $GetSubscriptions = Get-AzSubscription -TenantId $TenantID | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to Use" -PassThru 
         
     }
     catch{
         
-    Write-Error "Error When trying to connct to tenant...`n tenant ID in this link: https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview"
+        Write-Error "Error When trying to connct to tenant...`n Add your tenant ID to this script on line 3... `n tenant ID in this link: https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview"
         
     $_ ;
         
@@ -65,7 +65,7 @@ foreach($GetSubscription in $GetSubscriptions)
 
 Try{
 	#Set context for subscription being built
-	$SubContext = Set-AzContext -Subscription $GetSubscription.id
+	$null = Set-AzContext -Subscription $GetSubscription.id
 
     Write-Host "`nWorking in Subscription: $($GetSubscription.Name)"
 

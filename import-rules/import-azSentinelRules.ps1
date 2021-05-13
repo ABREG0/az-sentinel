@@ -33,8 +33,8 @@ Function Get-FileName {
 #disconnect exiting connections and clearing contexts.
 Write-Output "Clearing existing Azure connection `n"
     
-Disconnect-AzAccount -ContextName 'MyContext' | Out-Null
-    
+$null = Disconnect-AzAccount -ContextName 'MyContext' -ErrorAction SilentlyContinue
+
 Write-Output "Clearing existing Azure context `n"
     
 get-azcontext -ListAvailable | ForEach-Object{$_ | remove-azcontext -Force -Verbose | Out-Null} #remove all connected content
@@ -42,15 +42,15 @@ get-azcontext -ListAvailable | ForEach-Object{$_ | remove-azcontext -Force -Verb
 Write-Output "`nClearing of existing connection and context completed. `n"
 Try{
     #Connect to tenant with context name and save it to variable
-    $ConnectToTentant = Connect-AzAccount -Tenant $TenantID -ContextName 'MyContext' -Force -ErrorAction Stop
+    $null = Connect-AzAccount -Tenant $TenantID -ContextName 'MyContext' -Force -ErrorAction Stop
         
     #Select subscription to build
-    $GetSubscriptions = Get-AzSubscription | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to use" -PassThru 
+    $GetSubscriptions = Get-AzSubscription -TenantId $TenantID | Where-Object {($_.state -eq 'enabled') } | Out-GridView -Title "Select Subscription to use" -PassThru 
         
     }
     catch{
         
-    Write-Error "Error When trying to connct to tenant...`n tenant ID in this link: https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview"
+    Write-Error "Error When trying to connct to tenant...`n Add your tenant ID to this script on line 3... `n tenant ID in this link: https://portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview"
         
     $_ ;
         
@@ -82,16 +82,21 @@ Try{
             $Files = Get-FileName -initialDirectory $CurrentLoation.Drive.Root
 
             $Count = $Files.count 
-            
+            $Files
             if($null -ne $Files){
 
                 for ($index = 0 ; $index -lt $files.count; ){
 
                     $current = ($index + 1)
-
-                    Write-Host "`n Adding File $($Files[$index]) [ $current of $Count ] " -ForegroundColor Green
-                    $null = Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile "$($Files[$index])" | Out-Null
                     
+                    if($Files -is [array]){
+                    Write-Host "`n Importing Rule $($Files[$index]) [ $current of $Count ] " -ForegroundColor Green
+                    $null = Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile "$($Files[$index])" | Out-Null
+                    }
+                     else{
+                        Write-Host "`n Importing Rule $($Files) [ $current of $Count ] " -ForegroundColor Green
+                        $null = Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile "$($Files)" | Out-Null
+                     }
                     $index++
 
                 }

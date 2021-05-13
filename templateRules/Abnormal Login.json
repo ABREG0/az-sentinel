@@ -34,8 +34,9 @@
           "FileHash"
         ]
       },
-      // make sure permission has been granted for the resource group where your logic app (playbook) resides within Sentinel Automation. It requires the resource ID. 
-      "playbookName": "/subscriptions/[suscriptionID]/resourceGroups/[Resource Group Name]/providers/Microsoft.Logic/workflows/[name of the logic app (playbook)]"
+      // make sure permission has been granted for the resource group where your logic app (playbook) resides within Sentinel Automation. It requires the resource ID.
+	  //"/subscriptions/[suscriptionID]/resourceGroups/[Resource Group Name]/providers/Microsoft.Logic/workflows/[name of the logic app (playbook)]"
+      "playbookName": ""
     }
   ]
 }
