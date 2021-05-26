@@ -1,6 +1,6 @@
 #cabrego - 20210412
 
-$TenantID = ''
+$TenantID = 'ed312097-26b2-4cac-a13b-a8be209876d6'
 #$RulesFile = ''
 
 write-host "PS version $($psversionTable.psversion)" -ForegroundColor red
@@ -66,60 +66,69 @@ Try{
 	$SubContext = Set-AzContext -Subscription $GetSubscription.id
 
     Write-Host "`nWorking in Subscription: $($GetSubscription.Name)"
+    $ResourceGroups = Get-AzResourceGroup | Out-GridView -Title "Select resource Group" -PassThru
 
-    $LAWs = get-AzOperationalInsightsWorkspace | Out-GridView -Title "Select Log Analytics workspace" -PassThru 
+    if($null -eq $ResourceGroups){
+        Write-Host "No Resource Group was selected..." -ForegroundColor red 
+     }
+     else{
+      foreach($ResourceGroup in $ResourceGroups){
+        $LAWs = get-AzOperationalInsightsWorkspace -ResourceGroupName $ResourceGroup.ResourceGroupName | Out-GridView -Title "Select Log Analytics workspace" -PassThru 
 
-    if($null -eq $LAWs){
-        Write-Host "No Log Analytics workspace found..." -ForegroundColor red 
-    }
-    else{
-        Write-Host "`nListing Log Analytics workspace" -ForegroundColor Green
-           
-        Write-host "`n Importing Azure Sentinel Rules" -ForegroundColor Green
-        foreach($LAW in $LAWs){
-            $CurrentLoation = Get-Location
+        if($null -eq $LAWs){
+            Write-Host "No Log Analytics workspace found..." -ForegroundColor red 
+        }
+        else{
+            Write-Host "`nListing Log Analytics workspace" -ForegroundColor Green
+            
+            Write-host "`n Importing Azure Sentinel Rules" -ForegroundColor Green
+            foreach($LAW in $LAWs){
+                $CurrentLoation = Get-Location
 
-            $Files = Get-FileName -initialDirectory $CurrentLoation.Drive.Root
+                $Files = Get-FileName -initialDirectory $CurrentLoation.Drive.Root
 
-            $Count = $Files.count 
-            $Files
-            if($null -ne $Files){
+                $Count = $Files.count 
+                $Files
+                if($null -ne $Files){
 
-                for ($index = 0 ; $index -lt $files.count; ){
+                    for ($index = 0 ; $index -lt $files.count; ){
 
-                    $current = ($index + 1)
-                    
-                    if($Files -is [array]){
-                    Write-Host "`n Importing Rule $($Files[$index]) [ $current of $Count ] " -ForegroundColor Green
-                    $null = Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile "$($Files[$index])" | Out-Null
+                        $current = ($index + 1)
+                        
+                        if($Files -is [array]){
+                        Write-Host "`n Importing Rule $($Files[$index]) [ $current of $Count ] " -ForegroundColor Green
+                        $null = Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile "$($Files[$index])" | Out-Null
+                        }
+                        else{
+                            Write-Host "`n Importing Rule $($Files) [ $current of $Count ] " -ForegroundColor Green
+                            $null = Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile "$($Files)" | Out-Null
+                        }
+                        $index++
+
                     }
-                     else{
-                        Write-Host "`n Importing Rule $($Files) [ $current of $Count ] " -ForegroundColor Green
-                        $null = Import-AzSentinelAlertRule -WorkspaceName $LAW.Name -SettingsFile "$($Files)" | Out-Null
-                     }
-                    $index++
-
+                    
+                }
+                else{
+                    Write-Host "No File was selected..." -ForegroundColor Red
+                    break 
                 }
                 
+                $Files = ''; $Count = ''; $current = ''
             }
-             else{
-                 Write-Host "No File was selected..." -ForegroundColor Red
-                 break 
-             }
-            
 
         }
-
+      
+      }
     }
 
- 	}
-	catch [Exception]{ 
+  }
+  catch [Exception]{ 
 
-		Write-warning "Error Message: `n$_ "
+    Write-warning "Error Message: `n$_ "
 
-		$_
+    $_
 
-		}
+    }
 		 
 } 
 
