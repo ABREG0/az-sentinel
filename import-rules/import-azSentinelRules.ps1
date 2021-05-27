@@ -8,13 +8,13 @@ write-host "PS version $($psversionTable.psversion)" -ForegroundColor red
 #check for Azure az module
 if($null -eq (Get-InstalledModule -Name az)){
 write-host "Installing Azure az module"
-Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
+Install-Module -Name Az -Scope AllUsers -Repository PSGallery -Force -AllowClobber
 }
 
 #check for Azure az module
 if($null -eq (Get-InstalledModule -Name AzSentinel)){
 write-host "Installing Azure AzSentinel module"
-Install-Module -Name AzSentinel -Scope CurrentUser -Repository PSGallery -Force -AllowClobber
+Install-Module -Name AzSentinel -Scope AllUsers -Repository PSGallery -Force -AllowClobber
 }
 Function Get-FileName {  
     param($initialDirectory)
