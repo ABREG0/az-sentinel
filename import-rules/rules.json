@@ -24,7 +24,7 @@
       "alertRuleTemplateName": "826bb2f8-7894-4785-9a6b-a8a855d8366f",
       "lastModifiedUtc": "2021-04-13T01:24:26.5384236Z",
       "name": "7c99c576-6d49-4718-bf3c-682386e76813",
-      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/7c99c576-6d49-4718-bf3c-682386e76813",
+      "id": "/subscriptions/xxxxxxxx-xxxxxxx-xxxxx-xxxxx-xxxx/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/7c99c576-6d49-4718-bf3c-682386e76813",
       "kind": "Scheduled",
       "createIncident": true,
       "groupingConfiguration": {
@@ -65,7 +65,7 @@
       "alertRuleTemplateName": null,
       "lastModifiedUtc": "2021-04-13T01:24:35.0824843Z",
       "name": "62c5f5b5-f1f7-45ae-bcfc-19e1fe140e1f",
-      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/62c5f5b5-f1f7-45ae-bcfc-19e1fe140e1f",
+      "id": "/subscriptions/xxxxxxxx-xxxxxxx-xxxxx-xxxxx-xxxx/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/62c5f5b5-f1f7-45ae-bcfc-19e1fe140e1f",
       "kind": "Scheduled",
       "createIncident": true,
       "groupingConfiguration": {
@@ -106,7 +106,7 @@
       "alertRuleTemplateName": null,
       "lastModifiedUtc": "2021-04-13T01:24:38.1490799Z",
       "name": "ef4c67b7-af9b-462d-aff1-8b81ab129f6d",
-      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/ef4c67b7-af9b-462d-aff1-8b81ab129f6d",
+      "id": "/subscriptions/xxxxxxxx-xxxxxxx-xxxxx-xxxxx-xxxx/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/ef4c67b7-af9b-462d-aff1-8b81ab129f6d",
       "kind": "Scheduled",
       "createIncident": true,
       "groupingConfiguration": {
@@ -138,7 +138,7 @@
       "alertRuleTemplateName": null,
       "lastModifiedUtc": "2021-04-13T01:03:08.4200465Z",
       "name": "18e73498-b535-4300-a5be-c09d9ec756b5",
-      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/18e73498-b535-4300-a5be-c09d9ec756b5",
+      "id": "/subscriptions/xxxxxxxx-xxxxxxx-xxxxx-xxxxx-xxxx/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/18e73498-b535-4300-a5be-c09d9ec756b5",
       "kind": "MicrosoftSecurityIncidentCreation",
       "playbookName": ""
     },
@@ -158,7 +158,7 @@
       "alertRuleTemplateName": null,
       "lastModifiedUtc": "2021-04-13T01:24:42.5567915Z",
       "name": "618447ad-a1eb-4a0f-b34e-04332ca5f2da",
-      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/618447ad-a1eb-4a0f-b34e-04332ca5f2da",
+      "id": "/subscriptions/xxxxxxxx-xxxxxxx-xxxxx-xxxxx-xxxx/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/618447ad-a1eb-4a0f-b34e-04332ca5f2da",
       "kind": "MicrosoftSecurityIncidentCreation",
       "playbookName": ""
     }
@@ -175,7 +175,7 @@
       "enabled": true,
       "lastModifiedUtc": "2021-04-13T01:24:40.7177769Z",
       "name": "c6b9ec59-10ae-46ab-9b80-e90f6c0f0133",
-      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/c6b9ec59-10ae-46ab-9b80-e90f6c0f0133",
+      "id": "/subscriptions/xxxxxxxx-xxxxxxx-xxxxx-xxxxx-xxxx/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/c6b9ec59-10ae-46ab-9b80-e90f6c0f0133",
       "kind": "MLBehaviorAnalytics",
       "playbookName": ""
     }
@@ -202,7 +202,7 @@
       "enabled": true,
       "lastModifiedUtc": "2021-04-13T01:24:39.8142028Z",
       "name": "BuiltInFusion",
-      "id": "/subscriptions/93730f92-fc49-46f4-91c7-4e0ad4a17fb9/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/BuiltInFusion",
+      "id": "/subscriptions/xxxxxxxx-xxxxxxx-xxxxx-xxxxx-xxxx/resourceGroups/terraform-rg/providers/Microsoft.OperationalInsights/workspaces/law-sentinel/providers/Microsoft.SecurityInsights/alertRules/BuiltInFusion",
       "kind": "Fusion",
       "playbookName": ""
     }
